@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Tahmin Oyunu</title>
+</head>
+<body>
+
+    <p>1 ile 100 arasında bir sayıyı tahmin edin.</p>
+    <label id="tahminLabel"></label>
+    <input type="number" id="tahminInput">
+    <br />
+    <button onclick="tahminYap()">Tahmin yap</button>
+    <hr>
+    <label id="sonucLabel"></label>
+
+    <script>
+    const rastgeleSayi = Math.floor(Math.random() * 100) + 1;
+    let tahminSayisi = 1;
+
+    function tahminYap() {
+      const tahminInput = document.getElementById('tahminInput');
+      const tahmin = parseInt(tahminInput.value);
+
+      const tahminLabel = document.getElementById('tahminLabel');
+      tahminLabel.innerText = `${tahminSayisi}. tahmini girin:`;
+
+      if (tahmin === rastgeleSayi) {
+        const sonucLabel = document.getElementById('sonucLabel');
+        sonucLabel.innerText = `Sayı ${tahminSayisi} denemede bulundu.`;
+        return;
+      } else if (tahmin < rastgeleSayi) {
+        const sonucLabel = document.getElementById('sonucLabel');
+        sonucLabel.innerText = 'Daha büyük bir sayı girin.';
+      } else {
+        const sonucLabel = document.getElementById('sonucLabel');
+        sonucLabel.innerText = 'Daha küçük bir sayı girin.';
+      }
+
+      tahminSayisi++;
+
+      if (tahminSayisi > 7) {
+        const sonucLabel = document.getElementById('sonucLabel');
+        sonucLabel.innerText = 'Deneme hakkınız kalmadı. Kaybettiniz.';
+        return;
+      }
+
+      tahminInput.value = '';
+    }
+    </script>
+</body>
+</html>
+
+
